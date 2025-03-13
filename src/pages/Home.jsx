@@ -1,22 +1,20 @@
-import React from 'react'
-import { Categories } from '../assets/home/mockData'
-import image from '../assets/home/images/img1.jpg'
-import InfoSection from '../components/InfoSection'
-import CategoriesSection from '../components/CategoriesSection'
-import ProductList from '../components/ProductList'
-import Shop from './Shop'
-
-
+import React from 'react';
+import { CategoryList } from '../assets/home/mockData'; // Fixed import name
+import image from '../assets/home/images/img1.jpg';
+import InfoSection from '../components/InfoSection';
+import CategoriesSection from '../components/CategoriesSection';
+import ProductList from '../components/ProductList';
+import Shop from './Shop';
 
 const Home = () => {
   return (
     <div className='bg-white-200 mt-28 px-4 md:px-16 lg:px-24'>
-      <div className="container mx-auto py-4  flex flex-col md:flex-row space-x-2">
-        <div className="w-full  md:w-3/12 ">
-          <h2 className=" bg-red-600 text-white text-xs font-bold  px-2 py-2.5 ">SHOP BY CATEGORIES</h2>
-          <ul className=" space-y-4 bg-gray-100 p-3 ">
-            {Categories.map((category, index) => (
-              <li key={index} className=" flex items-center text-sm font-medium"> 
+      <div className="container mx-auto py-4 flex flex-col md:flex-row space-x-2">
+        <div className="w-full md:w-3/12">
+          <h2 className="bg-red-600 text-white text-xs font-bold px-2 py-2.5">SHOP BY CATEGORIES</h2>
+          <ul className="space-y-4 bg-gray-100 p-3">
+            {CategoryList.map((category, index) => (
+              <li key={index} className="flex items-center text-sm font-medium"> 
                 <div className="w-2 h-2 border border-red-500 rounded-full mr-2"></div>
                 {category}
               </li>
@@ -36,13 +34,13 @@ const Home = () => {
       <InfoSection />
       <CategoriesSection />
       <div>
-        <h1 className="text-3xl font-bold text-center mb-6">Top Products</h1>
-        <ProductList/>
-        
-        <Shop/>
-      </div>
-    </div>
-  )
-}
+        <ProductList />
 
-export default Home
+        
+      </div>
+      <div><Shop> </Shop></div>
+    </div>
+  );
+};
+
+export default Home;

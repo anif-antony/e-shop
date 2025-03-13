@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { addItemToCart, removeItemFromCart, clearCart } from "./redux/cartSlice";
 import { addItemToCart, removeItemFromCart, clearCart } from "../redux/cartSlice";
 import EmptyImage from "../assets/home/images/emptyProduct.webp";
 
@@ -25,13 +24,17 @@ const Cart = () => {
               key={item.id}
               className="flex justify-between items-center border-b py-4"
             >
-              <div>
-                <img src={item.image} alt={item.name} className="w-16 h-16 object-cover mr-4" />
-                <h3 className="text-lg font-medium">{item.name}</h3>
-                <p className="text-gray-600">${item.price.toFixed(2)}</p>
-                <p className="text-gray-600">Quantity: {item.quantity}</p>
-                
-
+              <div className="flex items-center">
+                <img 
+                  src={item.thumbnail || item.image} // Fixed: Use thumbnail fallback to image
+                  alt={item.name || item.title} // Fixed: Use name fallback to title
+                  className="w-16 h-16 object-cover mr-4" 
+                />
+                <div>
+                  <h3 className="text-lg font-medium">{item.name || item.title}</h3>
+                  <p className="text-gray-600">${item.price.toFixed(2)}</p>
+                  <p className="text-gray-600">Quantity: {item.quantity}</p>
+                </div>
               </div>
               <div className="flex items-center gap-3">
                 <button

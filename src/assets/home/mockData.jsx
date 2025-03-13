@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 
 
 
-export const Categories = [
-    "Electronics",
-    "Fashion",
-    "Home & Kitchen",
-    "Beauty",
-    "Sports",
-    "Automotive",
-  ];
+export const CategoryList = [
+  "Electronics",
+  "Fashion",
+  "Home & Kitchen",
+  "Beauty",
+  "Sports",
+  "Automotive",
+];
 
