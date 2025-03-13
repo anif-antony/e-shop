@@ -32,7 +32,7 @@ const CategoriesSection = () => {
                                 <img src={category.image} alt="category " className="w-full h-full object-cover rounded-md" />
                                 <div className='absolute top-10 left-10 '>
                                 <p className=" text-2xl font-bold text-black bg-opacity-50  rounded">{category.title}</p>
-                                <p className='text-gray-600'>view All</p>
+                                <p className='text-gray-600'>View All</p>
                                 </div>
                             </div>
                         </div>

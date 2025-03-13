@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
-        <nav className="container bg-white text-black shadow-md fixed top-0 w-full z-10">
+        <nav className="container bg-white text-black shadow-md fixed top-0 w-full z-10  ">
             <div className="container mx-auto px-4 py-3 flex justify-between items-center">
                 <div>
                     <Link to="/" className="text-4xl font-bold hover:text-red-600 transition duration-300">e-SHOP</Link>
@@ -30,6 +30,9 @@ const Navbar = () => {
                 <div className="flex items-center space-x-4">
                     <Link to="/cart" className="relative text-2xl text-gray-400 hover:text-red-600">
                         <FaShoppingCart />
+                        <span>
+                            
+                        </span>
                     </Link>
                     <button className="px-4 py-2 text-sm bg-red-600 text-white rounded-md hover:bg-red-400">
                         Login | Register
@@ -46,7 +49,7 @@ const Navbar = () => {
                         <Link to="/" className="hover:text-red-500 transition font-bold text-xl mx-5 duration-300">Home</Link>
                     </li>
                     <li>
-                        <Link to="/shop" className="hover:text-red-500 transition font-bold text-xl mx-5 duration-300">Shop</Link>
+                        <Link to="/shop" className="hover:text-red-500 transition font-bold text-xl mx-5 duration-300 active:text-green-300">Shop</Link>
                     </li>
                     <li>
                         <Link to="/about" className="hover:text-red-500 transition font-bold text-xl mx-5 duration-300">About</Link>

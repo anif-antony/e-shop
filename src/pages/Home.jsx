@@ -3,6 +3,9 @@ import { Categories } from '../assets/home/mockData'
 import image from '../assets/home/images/img1.jpg'
 import InfoSection from '../components/InfoSection'
 import CategoriesSection from '../components/CategoriesSection'
+import ProductList from '../components/ProductList'
+import Shop from './Shop'
+
 
 
 const Home = () => {
@@ -32,6 +35,12 @@ const Home = () => {
       </div>
       <InfoSection />
       <CategoriesSection />
+      <div>
+        <h1 className="text-3xl font-bold text-center mb-6">Top Products</h1>
+        <ProductList/>
+        
+        <Shop/>
+      </div>
     </div>
   )
 }

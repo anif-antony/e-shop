@@ -29,6 +29,7 @@ return (
         <div
           key={product.id}
           className="border p-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col relative group bg-white"
+          onClick={() => handleAddToCart(product)}
         >
           <div className="w-full h-48 overflow-hidden rounded-t-lg">
             <img
@@ -55,42 +56,6 @@ return (
           </div>
         </div>
       ))}
-    </div>
-    <div>
-      <h1 className="text-3xl font-bold text-center mb-6 ">Shop</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-        {products.map((product) => (
-          <div
-            key={product.id}
-            className="border p-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col relative group bg-white"
-          >
-            <div className="w-full h-48 overflow-hidden rounded-t-lg">
-              <img
-                src={product.thumbnail}
-                alt={product.title}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-            </div>
-            <div className="p-3 flex flex-col flex-grow">
-              <h2 className="text-lg font-semibold mb-1">{product.title}</h2>
-              <p className="text-gray-700 mb-2">${product.price}</p>
-              <div className="flex items-center space-x-1 mb-3">
-                {[...Array(4)].map((_, index) => (
-                  <FaStar key={index} className="text-yellow-500" />
-                ))}
-              </div>
-              <button
-                className="absolute bottom-4 right-4 px-4 py-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-sm font-semibold rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 hover:from-red-600 hover:to-pink-600"
-                onClick={() => handleAddToCart(product)}
-                onMouseEnter={(e) => (e.target.textContent = "Add to Cart")}
-                onMouseLeave={(e) => (e.target.textContent = "+")}
-              >
-                +
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   </div>
 );
