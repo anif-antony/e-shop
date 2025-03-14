@@ -46,7 +46,7 @@ const Login = () => {
         if (isEmailValid && isPasswordValid) {
             setIsSubmitting(true);
             setTimeout(() => {
-                alert('Login successful! Welcome to ShopEase.');
+                alert('Login successful! Welcome to E-Shop');
                 setEmail('');
                 setPassword('');
                 setIsSubmitting(false);
