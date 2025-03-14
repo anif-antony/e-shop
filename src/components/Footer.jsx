@@ -43,6 +43,19 @@ const Footer = () => {
                 <FaLinkedin size={24} />
               </a>
             </div>
+            <form className="mt-6">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="w-full px-4 py-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+              <button
+                type="submit"
+                className="w-full bg-red-600 text-white py-2 mt-2 rounded-md hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              >
+                Subscribe
+              </button>
+            </form>
           </div>
         </div>
 

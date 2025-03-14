@@ -2,9 +2,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 
 export const fetchProducts = createAsyncThunk("products/fetchProducts", async () => {
-  const response = await fetch("https://dummyjson.com/products");
+  const response = await fetch("https://fakestoreapi.com/products");
   const data = await response.json();
-  return data.products; 
+  return data;  
 });
 
 const productSlice = createSlice({
@@ -14,7 +14,7 @@ const productSlice = createSlice({
     loading: false,
     error: null,
   },
-  reducers: {}, // No manual reducers needed for now
+  reducers: {}, 
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -30,5 +30,6 @@ const productSlice = createSlice({
       });
   },
 });
+
 
 export default productSlice.reducer;

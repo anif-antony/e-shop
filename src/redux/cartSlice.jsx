@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { image } from "framer-motion/client";
 
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    items: [],
+    items:[],
     totalQuantity: 0,
     totalAmount: 0,
     totalItems: 0,  
@@ -18,8 +19,9 @@ const cartSlice = createSlice({
           id: newItem.id,
           price: newItem.price,
           quantity: 1,
+          title: newItem.title,
+          image: newItem.image,
           totalPrice: newItem.price,
-          name: newItem.name,
         });
       } else {
         existingItem.quantity++;

@@ -31,13 +31,13 @@ const Shop = () => {
                 key={product.id}
                 className="border p-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col relative group bg-white"
               >
-                <div className="w-full h-48 overflow-hidden rounded-t-lg">
+              <div className="w-full h-48 overflow-hidden rounded-t-lg">
                   <img
-                    src={product.thumbnail}
-                    alt={product.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
+                       src={product.image}  // ✅ FIXED: Use 'image' instead of 'thumbnail'
+                      alt={product.title}
+                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                   />
+                   </div>
                 <div className="p-3 flex flex-col flex-grow">
                   <h2 className="text-lg font-semibold mb-1">{product.title}</h2>
                   <p className="text-gray-700 mb-2">${product.price}</p>

@@ -16,6 +16,7 @@ const ProductList = () => {
   if (error) return <h2 className="text-center text-red-500">Error: {error}</h2>;
 
   const topProducts = products.slice(5, 10);
+  console.log("Products:", products);
 
   const handleAddToCart = (product) => {
     dispatch(addItemToCart(product));
@@ -24,7 +25,7 @@ const ProductList = () => {
   return (
     <div>
       <h1 className="text-3xl font-bold text-center mb-6">Top Products</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-6">
         {topProducts.map((product) => (
           <div
             key={product.id}
@@ -32,7 +33,7 @@ const ProductList = () => {
           >
             <div className="w-full h-48 overflow-hidden rounded-t-lg">
               <img
-                src={product.thumbnail}
+                src={product.image}
                 alt={product.title}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
