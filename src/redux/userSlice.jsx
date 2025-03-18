@@ -11,6 +11,7 @@ const userSlice = createSlice({
   reducers: {
     registerUser: (state, action) => {
       state.users.push(action.payload);
+      console.log("Users Data:", state.users); // Log users array
     },
     loginUser: (state, action) => {
       const user = state.users.find(
@@ -19,9 +20,11 @@ const userSlice = createSlice({
       if (user) {
         state.currentUser = user;
       }
+      console.log("Current User:", state.currentUser); // Log current user
     },
     logoutUser: (state) => {
       state.currentUser = null;
+      console.log("User logged out.");
     },
   },
 });

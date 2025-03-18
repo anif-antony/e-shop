@@ -24,11 +24,11 @@ const Shop = () => {
     <div className="container mx-auto px-4 py-10 ">
       <h1 className="text-4xl font-bold text-center my-8 text-gray-800">Shop Our Collection</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 ">
         {products.map((product) => (
           <div
             key={product.id}
-            className="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-5 flex flex-col items-center group relative"
+            className="bg-white border border-gray-200 rounded-xl shadow-md hover:shadow-lg  p-5 flex flex-col items-center group relative hover:scale-105 transition-transform duration-300 "
           >
             {/* Product Image - Full Display */}
             <div className="w-full h-40 flex justify-center items-center hover:scale-105 transition-transform overflow-hidden rounded-t-xl">  

@@ -6,7 +6,7 @@ import { Eye, EyeOff } from 'react-feather';
 
 
 
-import Modal from '../components/Modal';
+import Modal from '../components/Model';
 
 const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
   const dispatch = useDispatch();

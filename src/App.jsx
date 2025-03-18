@@ -9,7 +9,8 @@ import Cart from "./pages/Cart";
 import Shop from "./pages/Shop";
 import LoginModal from "./pages/Login";
 import RegisterModal from "./pages/Register";
-
+import Profile from "./pages/Profile"
+import Filtar from "./pages/Filtar";
 const App = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
@@ -43,13 +44,16 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/profile" element={<Profile/>}/>
+          <Route path="/filtar" element={<Filtar/>}/>
         </Routes>
       </main>
-
+     
       {/* Login/Register Modals */}
       <LoginModal isOpen={isLoginOpen} onClose={handleCloseModals} onSwitchToRegister={handleRegisterClick} />
       <RegisterModal isOpen={isRegisterOpen} onClose={handleCloseModals} onSwitchToLogin={handleLoginClick} />
-
+      
+       
       <Footer />
     </>
   );

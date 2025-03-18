@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../redux/userSlice';
 import { Eye, EyeOff } from 'react-feather';
-import Modal from '../components/Modal';
+import Modal from '../components/Model';
 
 const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
   const dispatch = useDispatch();
