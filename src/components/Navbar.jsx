@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaSearch, FaShoppingCart,FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom"; 
 import { useSelector } from "react-redux"; 
+import LoginModal from "../pages/Login";
 
 const Navbar = () => {
     const cartItemCount = useSelector(state => state.cart.totalQuantity);
     const navigate = useNavigate(); 
 
+    const [isLoginOpen, setIsLoginOpen] = useState(false); // Manage modal state
+
     const handleLoginClick = () => {
-        navigate("/login");
+        setIsLoginOpen(true); // Open modal
     };
 
     return (
-        <nav className="bg-white text-black shadow-md fixed top-0 w-full z-10">
+        <>
+        <nav className="bg-white text-black shadow-md fixed top-0 w-full z-20">
             <div className="container mx-auto px-4 py-3 flex justify-between items-center">
                 {/* Logo */}
                 <div>
@@ -89,7 +93,12 @@ const Navbar = () => {
                 </ul>
             </div>
         </nav>
+        <div className="z-20">
+        <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
+        </div>
+        </>
     );
+    
 };
 
 export default Navbar;

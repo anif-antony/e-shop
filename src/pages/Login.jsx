@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../redux/userSlice';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const LoginModal = ({ isOpen, onClose }) => {
     const dispatch = useDispatch();
     const users = useSelector(state => state.user.users);
     const navigate = useNavigate();
@@ -14,6 +14,8 @@ const Login = () => {
     const [passwordError, setPasswordError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+
+    if (!isOpen) return null;
 
     const validateEmail = () => {
         if (!email.trim()) {
@@ -49,6 +51,7 @@ const Login = () => {
             if (user) {
                 dispatch(loginUser({ email, password }));
                 alert('Login successful!');
+                onClose();
                 navigate('/');
             } else {
                 setEmailError('Invalid credentials');
@@ -59,8 +62,9 @@ const Login = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
-            <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray bg-opacity-50 z-40">
+            <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative">
+                <button className="absolute top-2 right-3 text-gray-600 text-xl" onClick={onClose}>×</button>
                 <h1 className="text-2xl font-bold text-gray-900 text-center">E-Shop Login</h1>
                 <form onSubmit={handleSubmit} className="space-y-4 mt-4" noValidate>
                     <input type="email" className="w-full border p-2 rounded" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} onBlur={validateEmail} />
@@ -82,4 +86,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default LoginModal;
