@@ -1,14 +1,14 @@
 import React from 'react';
-import { CategoryList } from '../assets/home/mockData'; // Fixed import name
+import { CategoryList } from '../assets/home/mockData';
 import image from '../assets/home/images/img1.jpg';
 import InfoSection from '../components/InfoSection';
 import CategoriesSection from '../components/CategoriesSection';
 import ProductList from '../components/ProductList';
 import Shop from './Shop';
 
-const Home = () => {
+const Home = ({ isModalOpen }) => {
   return (
-    <div className='bg-white-200 mt-28 px-4 md:px-16 lg:px-24'>
+    <div className={`bg-white-200 mt-28 px-4 md:px-16 lg:px-24 transition-all duration-300 ${isModalOpen ? "blur-lg bg-opacity-50" : ""}`}>
       <div className="container mx-auto py-4 flex flex-col md:flex-row space-x-2">
         <div className="w-full md:w-3/12">
           <h2 className="bg-red-600 text-white text-xs font-bold px-2 py-2.5">SHOP BY CATEGORIES</h2>
@@ -33,12 +33,8 @@ const Home = () => {
       </div>
       <InfoSection />
       <CategoriesSection />
-      <div>
-        <ProductList />
-
-        
-      </div>
-      <div><Shop> </Shop></div>
+      <ProductList />
+      <Shop />
     </div>
   );
 };

@@ -1,13 +1,12 @@
-
 {
-  "homepage":"https://anif-antony.github.io/e-shop",
+  "homepage": "https://anif-antony.github.io/e-shop",
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -20,6 +19,7 @@
     "framer-motion": "^12.4.12",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-feather": "^2.0.10",
     "react-icons": "^5.5.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.3.0",
