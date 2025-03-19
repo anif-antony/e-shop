@@ -3,9 +3,11 @@ import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchTerm } from "../redux/productSlice";
+import { logoutUser } from "../redux/userSlice";
 
 const Navbar = ({ onLoginClick, onRegisterClick }) => {
     const cartItemCount = useSelector((state) => state.cart.totalQuantity);
+    const currentUser = useSelector((state) => state.user.currentUser);
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const profileRef = useRef(null);
     const [search, setSearch] = useState("");
@@ -20,6 +22,11 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
 
     const handleProfileClick = () => {
         setIsProfileOpen((prev) => !prev);
+    };
+
+    const handleLogout = () => {
+        dispatch(logoutUser());
+        setIsProfileOpen(false);
     };
 
     useEffect(() => {
@@ -65,33 +72,39 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
                             </span>
                         )}
                     </Link>
-                    <button
-                        onClick={onLoginClick}
-                        className="px-4 py-2 text-sm bg-red-600 text-white rounded-md hover:bg-red-400 transition"
-                    >
-                        Login | Register
-                    </button>
-                    <div className="relative" ref={profileRef}>
-                        <button onClick={handleProfileClick} className="relative text-2xl text-dark-700">
-                            <FaUser />
+                    
+                    {!currentUser ? (
+                        // Show login/register button when not logged in
+                        <button
+                            onClick={onLoginClick}
+                            className="px-4 py-2 text-sm bg-red-600 text-white rounded-md hover:bg-red-400 transition"
+                        >
+                            Login | Register
                         </button>
-                        {isProfileOpen && (
-                            <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-4">
-                                <p className="text-lg font-semibold text-center">John Doe</p>
-                                <p className="text-sm text-gray-500 text-center">johndoe@example.com</p>
-                                <hr className="my-2" />
-                                <Link to="/profile" className="block text-center py-2 hover:bg-gray-100 rounded-lg">
-                                    Edit Profile
-                                </Link>
-                                <button
-                                    className="w-full text-center text-red-600 py-2 hover:bg-gray-100 rounded-lg"
-                                    onClick={() => alert("Logout clicked!")}
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        )}
-                    </div>
+                    ) : (
+                        // Show user profile icon when logged in
+                        <div className="relative" ref={profileRef}>
+                            <button onClick={handleProfileClick} className="relative text-2xl text-dark-700">
+                                <FaUser />
+                            </button>
+                            {isProfileOpen && (
+                                <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-4">
+                                    <p className="text-lg font-semibold text-center">{currentUser.name || "User"}</p>
+                                    <p className="text-sm text-gray-500 text-center">{currentUser.email}</p>
+                                    <hr className="my-2" />
+                                    <Link to="/profile" className="block text-center py-2 hover:bg-gray-100 rounded-lg">
+                                        Edit Profile
+                                    </Link>
+                                    <button
+                                        className="w-full text-center text-red-600 py-2 hover:bg-gray-100 rounded-lg"
+                                        onClick={handleLogout}
+                                    >
+                                        Logout
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
             </div>
             

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'react-feather';
-
+import { toast } from 'react-toastify';
 
 
 import Modal from '../components/Model';
@@ -53,12 +53,13 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
       const user = users.find((user) => user.email === email && user.password === password);
       if (user) {
         dispatch(loginUser({ email, password }));
-        alert('Login successful!');
+        toast.success("Login Successful"); 
         onClose();
         navigate('/');
       } else {
         setEmailError('Invalid credentials');
         setPasswordError('Invalid credentials');
+        toast.error("User Not Found");
         setIsSubmitting(false);
       }
     }
@@ -99,7 +100,7 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
 
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white p-3 rounded hover:bg-indigo-700 transition-colors"
+          className="w-full bg-red-600 text-white p-3 rounded hover:bg-red-700 transition-colors"
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Signing in...' : 'Sign in'}
@@ -107,7 +108,7 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
       </form>
       <p className="mt-4 text-sm text-center">
         Don't have an account?{' '}
-        <button onClick={onSwitchToRegister} className="text-indigo-600 hover:text-indigo-800">
+        <button onClick={onSwitchToRegister} className="text-red-600 hover:text-red-800">
           Register
         </button>
       </p>

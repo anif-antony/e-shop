@@ -1,3 +1,6 @@
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -52,6 +55,7 @@ const App = () => {
       {/* Login/Register Modals */}
       <LoginModal isOpen={isLoginOpen} onClose={handleCloseModals} onSwitchToRegister={handleRegisterClick} />
       <RegisterModal isOpen={isRegisterOpen} onClose={handleCloseModals} onSwitchToLogin={handleLoginClick} />
+      <ToastContainer position="top-right" autoClose={3000} />
       
        
       <Footer />

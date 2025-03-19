@@ -1,12 +1,17 @@
+
+
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../redux/userSlice';
 import { Eye, EyeOff } from 'react-feather';
 import Modal from '../components/Model';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.user.users);
+  const navigate = useNavigate();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -33,13 +38,15 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
       setIsSubmitting(true);
       dispatch(registerUser({ name, email, password }));
       setTimeout(() => {
-        alert('Registration successful!');
+        toast.success('Registration successful!');
         setName('');
         setEmail('');
         setPassword('');
         setConfirmPassword('');
         setIsSubmitting(false);
         onClose();
+        onSwitchToLogin();
+      
       }, 1500);
     }
   };
@@ -95,7 +102,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
 
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white p-3 rounded hover:bg-indigo-700 transition-colors"
+          className="w-full bg-red-600 text-white p-3 rounded hover:bg-red-700 transition-colors"
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Registering...' : 'Register'}
@@ -104,7 +111,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
 
       <p className="mt-4 text-sm text-center">
         Already have an account?{' '}
-        <button onClick={onSwitchToLogin} className="text-indigo-600 hover:text-indigo-800">
+        <button onClick={onSwitchToLogin} className="text-red-600 hover:text-red-800">
           Login
         </button>
       </p>
@@ -113,3 +120,6 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
 };
 
 export default RegisterModal;
+
+
+
