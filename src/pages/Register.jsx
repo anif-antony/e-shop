@@ -49,6 +49,7 @@ const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
       
       }, 1500);
     }
+    
   };
 
   return (

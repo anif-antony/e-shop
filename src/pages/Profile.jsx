@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateUser } from "../redux/userSlice"; // Import action for updating user
+import { updateUser } from "../redux/userSlice";
+import { useLocation } from "react-router-dom";
 
 const Profile = () => {
     const dispatch = useDispatch();
     const currentUser = useSelector((state) => state.user.currentUser);
+    const location = useLocation();
 
     // Local state for edit mode and form values
     const [isEditing, setIsEditing] = useState(false);
@@ -13,7 +15,14 @@ const Profile = () => {
         email: currentUser?.email || "",
     });
 
-    // Ensure form updates if currentUser changes
+    // Automatically enable edit mode if coming from the Navbar link
+    useEffect(() => {
+        if (location.state?.editMode) {
+            setIsEditing(true);
+        }
+    }, [location]);
+
+    // Update formData when currentUser changes
     useEffect(() => {
         if (currentUser) {
             setFormData({
@@ -30,8 +39,8 @@ const Profile = () => {
 
     // Handle save action
     const handleSave = () => {
-        dispatch(updateUser(formData)); // Update Redux state
-        setIsEditing(false); // Exit edit mode
+        dispatch(updateUser(formData));
+        setIsEditing(false);
     };
 
     return (
@@ -56,12 +65,16 @@ const Profile = () => {
                                 placeholder="Enter your new username"
                                 className="border p-2 w-full rounded"
                             />
-                           
+                            
                         </>
                     ) : (
                         <>
-                            <p className="font-semibold text-lg">{currentUser?.name || "User"}</p>
-                            <p className="text-gray-500 text-sm">{currentUser?.email || "No email available"}</p>
+                            <p className="font-semibold text-lg">
+                                {currentUser?.name || "User"}
+                            </p>
+                            <p className="text-gray-500 text-sm">
+                                {currentUser?.email || "No email available"}
+                            </p>
                         </>
                     )}
                 </div>

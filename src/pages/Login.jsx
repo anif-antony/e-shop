@@ -57,8 +57,7 @@ const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
         onClose();
         navigate('/');
       } else {
-        setEmailError('Invalid credentials');
-        setPasswordError('Invalid credentials');
+       
         toast.error("User Not Found");
         setIsSubmitting(false);
       }

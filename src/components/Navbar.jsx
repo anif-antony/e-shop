@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
+import { FaSearch, FaShoppingCart, FaUser, FaBars, FaTimes } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchTerm } from "../redux/productSlice";
@@ -9,6 +9,7 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
     const cartItemCount = useSelector((state) => state.cart.totalQuantity);
     const currentUser = useSelector((state) => state.user.currentUser);
     const [isProfileOpen, setIsProfileOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const profileRef = useRef(null);
     const [search, setSearch] = useState("");
     const navigate = useNavigate();
@@ -42,11 +43,11 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
     return (
         <nav className="bg-white text-black shadow-md fixed top-0 w-full z-20">
             <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-                <Link to="/" className="text-4xl font-bold hover:text-red-600 transition duration-300">
+                <Link to="/" className="text-2xl md:text-4xl font-bold hover:text-red-600 transition duration-300">
                     e-SHOP
                 </Link>
-                
-                <form onSubmit={handleSearch} className="relative w-full max-w-lg">
+
+                <form onSubmit={handleSearch} className="hidden md:flex relative w-full max-w-lg">
                     <input
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
@@ -62,9 +63,9 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
                         <FaSearch size={18} />
                     </button>
                 </form>
-                
-                <div className="flex items-center space-x-6 relative">
-                    <Link to="/cart" className="relative text-2xl text-dark-700">
+
+                <div className="flex items-center space-x-4 md:space-x-6 relative">
+                    <Link to="/cart" className="relative text-xl md:text-2xl text-dark-700">
                         <FaShoppingCart />
                         {cartItemCount > 0 && (
                             <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
@@ -72,19 +73,17 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
                             </span>
                         )}
                     </Link>
-                    
+
                     {!currentUser ? (
-                        // Show login/register button when not logged in
                         <button
                             onClick={onLoginClick}
-                            className="px-4 py-2 text-sm bg-red-600 text-white rounded-md hover:bg-red-400 transition"
+                            className="hidden md:block px-4 py-2 text-sm bg-red-600 text-white rounded-md hover:bg-red-400 transition"
                         >
                             Login | Register
                         </button>
                     ) : (
-                        // Show user profile icon when logged in
                         <div className="relative" ref={profileRef}>
-                            <button onClick={handleProfileClick} className="relative text-2xl text-dark-700">
+                            <button onClick={handleProfileClick} className="relative text-xl md:text-2xl text-dark-700">
                                 <FaUser />
                             </button>
                             {isProfileOpen && (
@@ -92,7 +91,12 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
                                     <p className="text-lg font-semibold text-center">{currentUser.name || "User"}</p>
                                     <p className="text-sm text-gray-500 text-center">{currentUser.email}</p>
                                     <hr className="my-2" />
-                                    <Link to="/profile" className="block text-center py-2 hover:bg-gray-100 rounded-lg">
+                                    {/* Pass the state flag for edit mode here */}
+                                    <Link 
+                                        to="/profile" 
+                                        state={{ editMode: true }} 
+                                        className="block text-center py-2 hover:bg-gray-100 rounded-lg"
+                                    >
                                         Edit Profile
                                     </Link>
                                     <button
@@ -105,10 +109,45 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
                             )}
                         </div>
                     )}
+
+                    <button
+                        onClick={() => setIsMenuOpen((prev) => !prev)}
+                        className="md:hidden text-xl"
+                        aria-label="Toggle Menu"
+                    >
+                        {isMenuOpen ? <FaTimes /> : <FaBars />}
+                    </button>
                 </div>
             </div>
-            
-            <div className="bg-white-100 py-2">
+
+            <div className={`md:hidden ${isMenuOpen ? "block" : "hidden"} bg-white shadow-md`}>
+                <ul className="flex flex-col items-center space-y-4 py-4">
+                    <li>
+                        <Link to="/" className="hover:text-red-500 font-bold text-lg transition">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/shop" className="hover:text-red-500 font-bold text-lg transition">Shop</Link>
+                    </li>
+                    <li>
+                        <Link to="/about" className="hover:text-red-500 font-bold text-lg transition">About</Link>
+                    </li>
+                    <li>
+                        <Link to="/contact" className="hover:text-red-500 font-bold text-lg transition">Contact</Link>
+                    </li>
+                    {!currentUser && (
+                        <li>
+                            <button
+                                onClick={onLoginClick}
+                                className="px-4 py-2 text-sm bg-red-600 text-white rounded-md hover:bg-red-400 transition"
+                            >
+                                Login | Register
+                            </button>
+                        </li>
+                    )}
+                </ul>
+            </div>
+
+            <div className="hidden md:block bg-white-100 py-2">
                 <ul className="container mx-auto flex justify-center items-center space-x-6">
                     <li>
                         <Link to="/" className="hover:text-red-500 font-bold text-xl mx-5 transition">Home</Link>
