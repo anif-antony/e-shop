@@ -24,7 +24,7 @@ const Home = ({ isModalOpen }) => {
             {CategoryList.map((category, index) => (
               <li 
                 key={index} 
-                className="flex items-center text-sm font-medium cursor-pointer hover:text-red-600 transition-colors duration-200"
+                className="flex items-center text-sm font-bold cursor-pointer hover:text-red-600 transition-colors duration-200"
                 onClick={() => handleCategoryClick(category)}
               > 
                 <div className="w-2 h-2 border border-red-500 rounded-full mr-2"></div>

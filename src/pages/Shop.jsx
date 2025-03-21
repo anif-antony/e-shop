@@ -20,11 +20,7 @@ const Shop = () => {
   // Get category from URL
   const categoryFilter = getQueryParam('category');
 
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
-
-  // Filter products when either products array or category filter changes
+ 
   useEffect(() => {
     if (products && products.length > 0) {
       if (categoryFilter) {
@@ -35,6 +31,18 @@ const Shop = () => {
           
           // Filtering logic for different categories
           if (categoryFilter === 'men') {
+            // Ensure no women's products are included
+            if (
+              productCategory.includes("women") ||
+              productTitle.includes("women") ||
+              productDescription.includes("women") ||
+              productCategory.includes("female") ||
+              productTitle.includes("female") ||
+              productCategory.includes("women's clothing")
+            ) {
+              return false; // Exclude women's products
+            }
+  
             return (
               productCategory.includes("men") || 
               productTitle.includes("men") ||
@@ -45,7 +53,7 @@ const Shop = () => {
               (productCategory === "clothing" && !productCategory.includes("women"))
             );
           }
-          
+  
           if (categoryFilter === 'women') {
             return (
               productCategory.includes("women") || 
@@ -56,7 +64,7 @@ const Shop = () => {
               productCategory.includes("women's clothing")
             );
           }
-          
+  
           if (categoryFilter === 'kids') {
             return (
               productCategory.includes("kid") || 
@@ -67,6 +75,7 @@ const Shop = () => {
               productDescription.includes("kid")
             );
           }
+          
           if (categoryFilter === 'electronics') {
             return (
               productCategory.includes("electronics") || 
@@ -78,7 +87,7 @@ const Shop = () => {
               productCategory.includes("camera") 
             );
           }
-
+  
           if (categoryFilter === 'home') {
             return (
               productCategory.includes("home") || 
@@ -88,7 +97,7 @@ const Shop = () => {
               productCategory.includes("appliance")
             );
           }
-
+  
           if (categoryFilter === 'fashion') {
             return (
               productCategory.includes("fashion") || 
@@ -100,6 +109,7 @@ const Shop = () => {
               productCategory.includes("accessories")
             );
           }
+  
           if (categoryFilter === 'sports') {
             return (
               productCategory.includes("sports") || 
@@ -111,7 +121,7 @@ const Shop = () => {
               productCategory.includes("yoga") 
             );
           }
-
+  
           if (categoryFilter === 'home-kitchen') {
             return (
               productCategory.includes("home") || 
@@ -124,7 +134,7 @@ const Shop = () => {
               productCategory.includes("furniture")
             );
           }
-
+  
           if (categoryFilter === 'beauty') {
             return (
               productCategory.includes("beauty") || 
@@ -135,7 +145,7 @@ const Shop = () => {
               productCategory.includes("makeup")
             );
           }
-
+  
           if (categoryFilter === 'automotive') {
             return (
               productCategory.includes("automotive") || 
@@ -146,16 +156,16 @@ const Shop = () => {
               productCategory.includes("accessories")
             );
           }
-          
-
-          return false;
+  
+          return false; // Default to no product if no match
         });
         setFilteredProducts(filtered);
       } else {
-        setFilteredProducts(products);
+        setFilteredProducts(products); // Show all products if no category filter
       }
     }
   }, [products, categoryFilter]);
+  
 
   const handleAddToCart = (product) => {
     dispatch(addItemToCart(product));

@@ -18,42 +18,33 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
     const dispatch = useDispatch();
     const location = useLocation();
 
-    // Reset search term when page is loaded/reloaded
     useEffect(() => {
-        // Reset search term in Redux when component mounts
         if (!search) {
             dispatch(setSearchTerm(""));
         }
     }, []);
 
-    // Improved search handling function with integrated filtering
     const handleSearchChange = (e) => {
         const newSearchTerm = e.target.value;
         setSearch(newSearchTerm);
-        
-        // Dispatch the search term to redux for filtering
         dispatch(setSearchTerm(newSearchTerm));
         
-        // If search is cleared and we're on the filter page, navigate to shop
         if (newSearchTerm === '' && location.pathname === '/filtar') {
             navigate('/shop');
             return;
         }
         
-        // Only navigate if we're adding the first character (to avoid unnecessary navigation)
         if (newSearchTerm.length === 1 && window.location.pathname !== '/filtar') {
             navigate('/filtar');
         }
     };
 
-    // Form submission handler
     const handleSearchSubmit = (e) => {
         e.preventDefault();
         dispatch(setSearchTerm(search));
         if (search.trim() !== '') {
             navigate('/filtar');
         } else {
-            // If search is empty, navigate to shop page
             navigate('/shop');
         }
     };
@@ -67,12 +58,9 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
         setIsProfileOpen(false);
     };
 
-    // Add filter functionality that works with backspace
     useEffect(() => {
-        // This ensures that backspace events properly update the filter
         dispatch(setSearchTerm(search));
-        
-        // If search is completely cleared and we're on the filter page, go back to shop
+
         if (search === '' && location.pathname === '/filtar') {
             navigate('/shop');
         }
@@ -139,9 +127,18 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
                         <div className="relative" ref={profileRef}>
                             <button
                                 onClick={handleProfileClick}
-                                className="relative text-xl md:text-2xl text-dark-700"
+                                className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-gray-300"
                             >
-                                <FaUser />
+                                {/* Profile image or default icon */}
+                                {currentUser.profileImage ? (
+                                    <img
+                                        src={currentUser.profileImage}
+                                        alt={currentUser.name}
+                                        className="w-full h-full object-cover rounded-full"
+                                    />
+                                ) : (
+                                    <FaUser className="w-full h-full text-red-600" />
+                                )}
                             </button>
                             {isProfileOpen && (
                                 <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-4">
@@ -256,7 +253,7 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
                     <li>
                         <NavLink
                             to="/"
-                            className="hover:text-red-500 font-bold text-xl mx-5 transition"
+                            className="hover:underline font-bold text-xl mx-5 transition"
                             style={({ isActive }) => isActive ? { color: 'red' } : {}}
                         >
                             Home
@@ -265,7 +262,7 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
                     <li>
                         <NavLink
                             to="/shop"
-                            className="hover:text-red-500 font-bold text-xl mx-5 transition"
+                            className="hover:underline font-bold text-xl mx-5 transition"
                             style={({ isActive }) => isActive ? { color: 'red' } : {}}
                         >
                             Shop
@@ -274,7 +271,7 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
                     <li>
                         <NavLink
                             to="/about"
-                            className="hover:text-red-500 font-bold text-xl mx-5 transition"
+                            className="hover:underline font-bold text-xl mx-5 transition"
                             style={({ isActive }) => isActive ? { color: 'red' } : {}}
                         >
                             About
@@ -283,7 +280,7 @@ const Navbar = ({ onLoginClick, onRegisterClick }) => {
                     <li>
                         <NavLink
                             to="/contact"
-                            className="hover:text-red-500 font-bold text-xl mx-5 transition"
+                            className="hover:underline font-bold text-xl mx-5 transition"
                             style={({ isActive }) => isActive ? { color: 'red' } : {}}
                         >
                             Contact

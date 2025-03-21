@@ -23,7 +23,7 @@ const About = () => {
       <div className="text-center max-w-3xl mx-auto">
         <h1 className="text-5xl font-extrabold text-gray-900">About Us</h1>
         <p className="mt-4 text-lg text-gray-600 leading-relaxed">
-          Welcome to <span className="font-semibold text-blue-600">Shopy Tech</span>, your go-to store for the latest tech gadgets and accessories. 
+          Welcome to <span className="font-semibold text-blue-600">e-Shop</span>, your go-to store for the latest tech gadgets and accessories. 
           We provide high-quality products with a focus on <strong>innovation, affordability, and customer satisfaction</strong>.
         </p>
       </div>
@@ -43,7 +43,7 @@ const About = () => {
       <div className="mt-16 bg-white p-8 rounded-xl shadow-lg max-w-4xl mx-auto text-center">
         <h2 className="text-3xl font-bold text-gray-900">Our Mission</h2>
         <p className="mt-4 text-lg text-gray-600">
-          At <strong>Shopy Tech</strong>, our mission is to <strong>deliver cutting-edge technology</strong> to everyone, ensuring that quality and affordability go hand in hand. 
+          At <strong>e-Shop</strong>, our mission is to <strong>deliver cutting-edge technology</strong> to everyone, ensuring that quality and affordability go hand in hand. 
           We are committed to <strong>offering the latest innovations with a seamless shopping experience</strong>.
         </p>
       </div>
