@@ -9,7 +9,7 @@ const Footer = () => {
           
           {/* Logo & Description */}
           <div>
-            <h2 className="text-2xl font-bold">Shopy Tech</h2>
+            <h2 className="text-2xl font-bold">e-Shop</h2>
             <p className="text-gray-400 mt-2">
               Your one-stop shop for the latest tech gadgets and accessories.
             </p>
@@ -61,7 +61,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="border-t border-gray-700 mt-6 pt-4 text-center text-gray-400">
-          <p>© {new Date().getFullYear()} Shopy Tech. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} e-Shop. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -14,6 +14,7 @@ import LoginModal from "./pages/Login";
 import RegisterModal from "./pages/Register";
 import Profile from "./pages/Profile"
 import Filtar from "./pages/Filtar";
+import OrderConfirmation from './pages/orderConfirmation';
 const App = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
@@ -49,6 +50,7 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/filtar" element={<Filtar/>}/>
+          <Route path="/order-confirmation"  element={<OrderConfirmation />}/>
         </Routes>
       </main>
      
