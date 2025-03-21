@@ -11,6 +11,10 @@ const Filtar = () => {
 </h2>;
     }
 
+     const handleAddToCart = (product) => {
+        dispatch(addItemToCart(product));
+      };
+
     return (
         <div className="container mx-auto px-4 py-10">
             <h1 className="text-4xl font-bold text-center my-8 text-gray-800">Shop Our Collection</h1>
@@ -41,7 +45,7 @@ const Filtar = () => {
                             {/* Add to Cart Button */}
                             <button
                                 className="absolute bottom-4 right-4 px-4 py-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-sm font-semibold rounded-lg shadow-md transition-all duration-300 transform"
-                                onClick={() => alert("Added to Cart")}
+                                onClick={() => handleAddToCart(product)}
                                 onMouseEnter={(e) => (e.currentTarget.innerText = "Add to Cart")}
                                 onMouseLeave={(e) => (e.currentTarget.innerText = "+")}
                             >
